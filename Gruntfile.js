@@ -71,10 +71,10 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: process.env.PORT || '0.0.0.0',
+        port: process.env.PORT || '5000',
         // Change this to '0.0.0.0' to access the server from outside.
         // hostname: 'localhost',
-        hostname: process.env.IP || '5000',
+        hostname: process.env.IP || '0.0.0.0',
         open: true,
         livereload: 8081
       },
