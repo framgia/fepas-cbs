@@ -5,14 +5,14 @@
     .module('app.services')
     .service('RoomsService', RoomsService);
 
-  RoomsService.$inject = ['DataFactory'];
+  RoomsService.$inject = ['DataFactory', '$firebaseArray'];
 
-  function RoomsService(DataFactory) {
+  function RoomsService(DataFactory, $firebaseArray) {
     this.create = create;
-
+    this.listRooms = index;
     function create(room) {
       var roomsRef = DataFactory('rooms');
-
+      $firebaseArray(roomsRef);
       return roomsRef.child(room.roomName).once('value').then(
         function(snapshot) {
           if(snapshot.val() !== null) {
@@ -26,6 +26,11 @@
             });
           }
         });
+    }
+
+    function index() {
+      var roomsRef = DataFactory('rooms');
+      return $firebaseArray(roomsRef);
     }
   }
 })();
