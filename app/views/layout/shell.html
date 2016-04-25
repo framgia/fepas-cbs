@@ -1,0 +1,15 @@
+<div data-ng-controller="ShellController as shell" class="site">
+  <header>
+    <div data-ng-include="'views/layout/topnav.html'"></div>
+  </header>
+  <!--[if lte IE 8]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <main data-ng-view class="container">
+  </main>
+
+  <footer>
+    <div data-ng-include="'view/layout/footer.html'"></div>
+  </footer>
+</div>
