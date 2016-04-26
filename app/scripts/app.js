@@ -57,13 +57,18 @@
         controller: 'ContactController',
         controllerAs: 'contact'
       })
+      .when('/users/edit', {
+        templateUrl: 'views/users/edit.html',
+        controller: 'UsersController',
+        controllerAs: 'user'
+      })
       .otherwise({
         redirectTo: '/'
       });
   }
 
   // Function that run right after app is initialized
-  
+
   runFunction.$inject = ['DataFactory', 'Firebase'];
   function runFunction(DataFactory, Firebase){
     // https://www.firebase.com/docs/web/guide/offline-capabilities.html
@@ -74,14 +79,14 @@
     DataFactory('.info/connected').on('value', function(snap) {
       if (snap.val() === true) {
         // We're connected (or reconnected)! Do anything here that should happen only if online (or on reconnect)
-    
+
         // add this device to my connections list
         // this value could contain info about the device or a timestamp too
         var con = connectionsRef.push(Firebase.ServerValue.TIMESTAMP);
-    
+
         // when I disconnect, remove this device
         con.onDisconnect().remove();
-        
+
         // Report number of connected connection
         connectionsRef.on('value', function(snap){
           console.info('Connected user: ' + snap.numChildren());
