@@ -11,6 +11,6 @@
    * Controller of the app
    */
   angular.module('app.controllers').controller('ContactController', ContactController);
-  
+
   function ContactController() {}
 })();
