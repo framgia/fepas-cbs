@@ -37,6 +37,10 @@
         return authData;
       };
       
+      account.currentAuth = function () {
+        return auth.$requireAuth();
+      };
+      
       return account;
     }
   }
