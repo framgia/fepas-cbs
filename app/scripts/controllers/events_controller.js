@@ -8,10 +8,14 @@
     .controller('EventsController', EventsController);
 
   function roomFilter(){
-    return function(input, roomName) {
-      if (roomName) {
-        return input.filter(function(event) {
-          return event.roomName === roomName;
+    return function(input, value) {
+      if (value) {
+        return input.filter(function(object) {
+          if (angular.isNumber(value)) {
+            return object.roomCapacity === value;
+          } else {
+            return object.roomName === value;
+          }
         });
       } else {
         return input;
@@ -26,10 +30,18 @@
     var currentDate = new Date();
     var startDate = currentDate.setHours(0,0,0,0);
     var endDate = currentDate.setHours(23,59,59,999);
-
+    vm.seats = [];
+    vm.rooms = [];
     vm.allRooms = RoomsService.listRooms();
     vm.allRooms.$loaded().then(function(rooms) {
-      vm.rooms = rooms.map(function(k){return k.roomDescription;});
+      angular.forEach(rooms, function(room){
+        if (vm.seats.indexOf(room.roomCapacity) === -1) {
+          vm.seats.push(room.roomCapacity); 
+        }
+        if(vm.rooms.indexOf(room.roomName) === -1) {
+          vm.rooms.push(room.roomName);
+        }
+      });
     });
 
     vm.booking = {
@@ -48,12 +60,6 @@
 
     vm.roomBooking = roomBooking;
     vm.bookingReset = bookingReset;
-
-    vm.change = function(){
-      var startDate = Date.parse(new Date(vm.timeFrom));
-      var endDate = Date.parse(new Date(vm.timeTo));
-      reloadData(startDate, endDate);
-    };
 
     vm.changeRoom = function(){
       var startDate = Date.parse(new Date(vm.timeFrom));

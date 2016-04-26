@@ -2,3 +2,10 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 @import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
 
 .menu{margin-left: -36px;}
+.top-10{margin-top: 10px;}
+.bottom-10{margin-bottom: 50px;}
+.bottom-5{margin-bottom: 5px;}
+.room-detail{
+  overflow: auto; 
+  max-height: 250px;
+}
