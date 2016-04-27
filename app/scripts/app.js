@@ -75,6 +75,10 @@
       .when('/events', {
         templateUrl: 'views/events/index.html',
         controller: 'EventsController',
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController',
         controllerAs: 'vm'
       })
       .when('/rooms', {
