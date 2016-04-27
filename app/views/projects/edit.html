@@ -1,0 +1,30 @@
+<h1>Edit Project</h1>
+
+<form ng-submit="project.handleEditSubmit(project.info)">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Name:</label>
+    <div class="col-sm-4">
+      <input class="form-control" ng-model="project.info.name" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Owners:</label>
+    <div class="col-sm-4">
+      <input class="form-control" ng-model="project.info.owners" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Members:</label>
+    <div class="col-sm-4">
+      <input class="form-control" ng-model="project.info.members" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2">
+      <button type="submit" class="btn btn-small btn-primary">Save Changes</button>
+    </div>
+  </div>
+</form>

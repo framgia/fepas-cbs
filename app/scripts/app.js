@@ -77,6 +77,11 @@
         controller: 'RoomsController',
         controllerAs: 'room'
       })
+      .when('/projects/:name/edit', {
+        templateUrl: 'views/projects/edit.html',
+        controller: 'ProjectsController',
+        controllerAs: 'project'
+      })
       .otherwise({
         redirectTo: '/'
       });
