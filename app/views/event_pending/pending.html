@@ -1,0 +1,25 @@
+<div class="row">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Project name</th>
+        <th>Room name</th>
+        <th>From</th>
+        <th>To</th>
+        <th>User name</th>
+      </tr>
+    </thead>
+    <tbody dir-paginate="event in event.eventsPending | itemsPerPage: 10">
+      <tr>
+        <td>{{event.projectName}}</td>
+        <td>{{event.roomName}}</td>
+        <td>{{event.timeFrom}}</td>
+        <td>{{event.timeTo}}</td>
+        <td>{{event.userName}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <dir-pagination-controls boundary-links="true"></dir-pagination-controls>
+  </div>
+</div>
