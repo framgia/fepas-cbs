@@ -62,6 +62,11 @@
         controller: 'UsersController',
         controllerAs: 'user'
       })
+      .when('/rooms/new', {
+        templateUrl: 'views/rooms/new.html',
+        controller: 'RoomsController',
+        controllerAs: 'newRoom'
+      })
       .otherwise({
         redirectTo: '/'
       });
