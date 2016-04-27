@@ -67,6 +67,11 @@
         controller: 'RoomsController',
         controllerAs: 'newRoom'
       })
+      .when('/events', {
+        templateUrl: 'views/events/index.html',
+        controller: 'EventsController',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/'
       });

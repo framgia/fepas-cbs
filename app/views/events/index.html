@@ -1,0 +1,45 @@
+<div>
+  <div class="pull-right mb-15">
+    <div class="form-group">
+      <div class="col-xs-2">
+        Time From
+        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="vm.timeFrom" ng-change='vm.change()' show-weeks="false" />
+      </div>
+      <div class="col-xs-2">
+        Time To
+        <input type="text" class="form-control" size = "100" datepicker-popup="yyyy-MM-dd" ng-model="vm.timeTo" ng-change='vm.change()' show-weeks="false" />
+      </div>
+      <div>
+        <select  ng-model="vm.selectedRoomName" ng-options="room for room in vm.rooms">
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div ng-repeat= "event in vm.events | roomFilter:vm.selectedRoomName track by event.$id">
+
+    <table class ="table table-bordered table-statistic-result">
+      <thead>
+        <tr>
+          <th> ROOM NAME </th>
+          <th> USER NAME </th>
+          <th> DESCRIPTION </th>
+          <th> TIMEFROM </th>
+          <th> TIMETO </th>
+          <th> PROJECT NAME </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{event.roomName}}</td>
+          <td>{{event.userName}}</td>
+          <td>{{event.description}}</td>
+          <td>{{event.timeFrom}}</td>
+          <td>{{event.timeTo}}</td>
+          <td>{{event.projectName}}</td>
+        </tr>
+     </tbody>
+    </table>
+  </div>
+</div>
