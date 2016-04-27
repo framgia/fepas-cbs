@@ -3,43 +3,38 @@
     <div class="form-group">
       <div class="col-xs-2">
         Time From
-        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="vm.timeFrom" ng-change='vm.change()' show-weeks="false" />
+        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="eventList.timeFrom" ng-change='eventList.change()' show-weeks="false" />
       </div>
       <div class="col-xs-2">
         Time To
-        <input type="text" class="form-control" size = "100" datepicker-popup="yyyy-MM-dd" ng-model="vm.timeTo" ng-change='vm.change()' show-weeks="false" />
+        <input type="text" class="form-control" size = "100" datepicker-popup="yyyy-MM-dd" ng-model="eventList.timeTo" ng-change='eventList.change()' show-weeks="false" />
       </div>
       <div>
-        <select  ng-model="vm.selectedRoomName" ng-options="room for room in vm.rooms">
+        <select  ng-model="eventList.selectedRoomName" ng-options="room for room in eventList.rooms" ng-change='eventList.changeRoom()'>
           <option value=""></option>
         </select>
       </div>
     </div>
     </div>
   </div>
-  <div ng-repeat= "event in vm.events | roomFilter:vm.selectedRoomName track by event.$id">
-
-    <table class ="table table-bordered table-statistic-result">
-      <thead>
-        <tr>
-          <th> ROOM NAME </th>
-          <th> USER NAME </th>
-          <th> DESCRIPTION </th>
-          <th> TIMEFROM </th>
-          <th> TIMETO </th>
-          <th> PROJECT NAME </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{event.roomName}}</td>
-          <td>{{event.userName}}</td>
-          <td>{{event.description}}</td>
-          <td>{{event.timeFrom}}</td>
-          <td>{{event.timeTo}}</td>
-          <td>{{event.projectName}}</td>
-        </tr>
-     </tbody>
-    </table>
+  <div class="span8">
+    <tabset>
+      <tab select="renderCalender('eventCalendar');">
+        <tab-heading>
+        </tab-heading>
+        <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+          <h4>{{alertMessage}}</h4>
+        </div>
+        <div class="btn-toolbar">
+          <p class="pull-right lead">Booked Events </p>
+          <div class="btn-group">
+              <button class="btn btn-success" ng-click="changeView('agendaDay', 'eventCalendar')">Day</button>
+              <button class="btn btn-success" ng-click="changeView('agendaWeek', 'eventCalendar')">Week</button>
+              <button class="btn btn-success" ng-click="changeView('month', 'eventCalendar')">Month</button>
+          </div>
+        </div>
+        <div class="calendar" ng-model="eventSources" calendar="eventCalendar" ui-calendar="uiConfig.calendar"></div>
+      </tab>
+    </tabset>
   </div>
 </div>

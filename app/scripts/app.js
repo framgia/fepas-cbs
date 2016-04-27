@@ -26,7 +26,8 @@
     'app.controllers',
     'app.directives',
     'app.factories',
-    'app.services'
+    'app.services',
+    'ui.calendar'
   ])
   .config(routeFunction)
   .run(runFunction);
@@ -75,6 +76,7 @@
       .when('/events', {
         templateUrl: 'views/events/index.html',
         controller: 'EventsController',
+        controllerAs: 'eventList'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
