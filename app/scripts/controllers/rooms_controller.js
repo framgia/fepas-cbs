@@ -11,7 +11,7 @@
     var vm = this;
 
     vm.create = create;
-
+    vm.listRooms =  RoomsService.listRooms();
     function create() {
       RoomsService.create(vm.room).then(
         function() {
