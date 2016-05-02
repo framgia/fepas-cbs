@@ -82,6 +82,12 @@
         controller: 'ProjectsController',
         controllerAs: 'project'
       })
+      .when('/events/new', {
+        templateUrl: 'views/events/new.html',
+        controller: 'EventsController',
+        controllerAs: 'newEvent'
+
+      })
       .otherwise({
         redirectTo: '/'
       });
