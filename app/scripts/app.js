@@ -97,7 +97,11 @@
         templateUrl: 'views/events/new.html',
         controller: 'EventsController',
         controllerAs: 'newEvent'
-
+      })
+      .when('/projects/:name/show', {
+        templateUrl: 'views/projects/show.html',
+        controller: 'ProjectsController',
+        controllerAs: 'project'
       })
       .when('/profile', {
         templateUrl: 'views/profile.html',

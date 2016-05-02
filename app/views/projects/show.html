@@ -1,0 +1,9 @@
+<h1 ng-model="project.info">Project Name: {{project.info.name}}</h1>
+<hr>
+<div ng-model="project.info">Owners: {{project.info.owners}}</div>
+<div ng-model="project.info">Members: {{project.info.members}}</div>
+<div class="form-group">
+  <div class="col-sm-offset-2">
+    <button ng-click="project.redirectEdit()" class="btn btn-small btn-primary">Edit</button>
+  </div>
+</div>
