@@ -4,6 +4,7 @@ machine:
     version: 4.4.0
 dependencies:
   override:
+    - cp app/scripts/config.js.ci app/scripts/config.js
     - npm install -g npm@3.x.x
   post:
     - node -v
@@ -11,9 +12,19 @@ dependencies:
     - npm install
     - npm install -g bower
     - npm install -g jshint
+    - npm install -g grunt
+    - npm install -g protractor
     - bower -v
     - bower install
 
 test:
   override:
     - jshint app
+    - webdriver-manager update
+    - webdriver-manager start:
+        background: true
+    - sleep 5
+    - grunt serve:
+        background: true
+    - sleep 5
+    - protractor conf.js
