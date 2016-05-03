@@ -18,16 +18,15 @@
     };
   }
 
-  EventsController.$inject = ['DataFactory', '$firebaseArray', 'EventsService', '$window'];
-  function EventsController(DataFactory, $firebaseArray, EventsService, $window){
+  EventsController.$inject = ['DataFactory', '$firebaseArray', 'EventsService', 'RoomsService', '$location'];
+  function EventsController(DataFactory, $firebaseArray, EventsService, RoomsService, $location){
     var vm = this;
     var eventRef = DataFactory("events");
     var currentDate = new Date();
     var startDate = currentDate.setHours(0,0,0,0);
     var endDate = currentDate.setHours(23,59,59,999);
 
-    var roomsRef = DataFactory('rooms');
-    vm.all_rooms = $firebaseArray(roomsRef);
+    vm.all_rooms = RoomsService.listRooms();
     vm.booking = {
       roomName: "",
       projectName: "",
@@ -72,15 +71,15 @@
 
         EventsService.create(booking).then(
         function() {
-          $window.location.href = '#/events';
+          $location.path('events');
         },
         function(error) {
           console.log(error);
-          $window.location.reload();
+          $location.path('events/new');
         });
       }
       else {
-        $window.alert('Time from and time to are invalid');
+        console.log('Time from and time to are invalid');
       }
     }
 
