@@ -34,7 +34,7 @@
   // Pre-init modules
   angular.module('app.config', []);
   angular.module('app.controllers', []);
-  angular.module('app.directives', []);
+  angular.module('app.directives', ['angularUtils.directives.dirPagination']);
   angular.module('app.factories', []);
   angular.module('app.services', []);
 
@@ -66,6 +66,11 @@
         templateUrl: 'views/rooms/new.html',
         controller: 'RoomsController',
         controllerAs: 'newRoom'
+      })
+      .when('/rooms/pending', {
+        templateUrl: 'views/event_pending/pending.html',
+        controller: 'EventPendingController',
+        controllerAs: 'event'
       })
       .when('/events', {
         templateUrl: 'views/events/index.html',
