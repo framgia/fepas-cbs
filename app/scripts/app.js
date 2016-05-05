@@ -33,11 +33,24 @@
   .run(runFunction);
 
   // Pre-init modules
-  angular.module('app.config', []);
+  angular.module('app.config', ['pascalprecht.translate'])
+    .config(languageFunction);
   angular.module('app.controllers', []);
   angular.module('app.directives', ['angularUtils.directives.dirPagination']);
   angular.module('app.factories', []);
   angular.module('app.services', []);
+
+  languageFunction.$inject = ['$translateProvider'];
+  function languageFunction($translateProvider){
+    $translateProvider
+      .useStaticFilesLoader({
+        prefix: '/translations/locale-',
+        suffix: '.json'
+      })
+      .preferredLanguage('vn')
+      .useMissingTranslationHandlerLog()
+      .useSanitizeValueStrategy('escape');
+  }
 
   // angularRoute
   routeFunction.$inject = ['$routeProvider'];
@@ -130,8 +143,9 @@
   
   // Function that run right after app is initialized
 
-  runFunction.$inject = ['DataFactory', 'Firebase'];
-  function runFunction(DataFactory, Firebase){
+  runFunction.$inject = ['DataFactory', 'Firebase', '$rootScope'];
+  function runFunction(DataFactory, Firebase, $rootScope){
+    $rootScope.lang = 'vn';
     // https://www.firebase.com/docs/web/guide/offline-capabilities.html
     // since I can connect from multiple devices or browser tabs, we store each connection instance separately
     // any time that connectionsRef's value is null (i.e. has no children) I am offline
