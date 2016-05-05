@@ -10,14 +10,14 @@
     
     function NavController($timeout, $window, AccountFactory) {
       var vm = this;
-      var current_user;
+      var currentUser;
       
       vm.isLoggedin = AccountFactory.active();
      
       if (vm.isLoggedin) {
-        current_user = AccountFactory.current_user();
-        vm.fullname = current_user.google.displayName;
-        vm.image_url = current_user.google.profileImageURL;
+        currentUser = AccountFactory.currentUser();
+        vm.fullname = currentUser.google.displayName;
+        vm.imageUrl = currentUser.google.profileImageURL;
       }
       
       vm.logout = function () {

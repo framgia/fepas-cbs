@@ -4,7 +4,7 @@
     <label for="roomName" class="control-label col-sm-2">Room name:</label>
     <div class="col-sm-10">
       <select ng-model="newEvent.booking.roomName" name="roomName" class="form-control" required="">
-        <option ng-repeat="room in newEvent.all_rooms" value="{{room.roomName}}">{{room.roomName}}</option>
+        <option ng-repeat="room in newEvent.allRooms" value="{{room.roomName}}">{{room.roomName}}</option>
       </select>
     </div>
 

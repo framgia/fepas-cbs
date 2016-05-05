@@ -13,11 +13,11 @@
       var account = {};
     
       account.login = function () {
-        return auth.$authWithOAuthPopup("google", {scope: 'email'})
+        return auth.$authWithOAuthPopup('google', {scope: 'email'})
           .then(function(authData) {
             console.log(authData.google.email);
           }).catch (function (error) {
-            console.error("Authentication failed google:", error); 
+            console.error('Authentication failed google:', error); 
           }
         );
       };
@@ -32,7 +32,7 @@
         return (authData !== null);
       };
        
-      account.current_user = function () {
+      account.currentUser = function () {
         var authData = auth.$getAuth();
         return authData;
       };
