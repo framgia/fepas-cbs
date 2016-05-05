@@ -1,3 +1,4 @@
+/* global angular */
 (function(){
   'use strict';
 
@@ -21,23 +22,23 @@
   EventsController.$inject = ['DataFactory', '$firebaseArray', 'EventsService', 'RoomsService', '$location'];
   function EventsController(DataFactory, $firebaseArray, EventsService, RoomsService, $location){
     var vm = this;
-    var eventRef = DataFactory("events");
+    var eventRef = DataFactory('events');
     var currentDate = new Date();
     var startDate = currentDate.setHours(0,0,0,0);
     var endDate = currentDate.setHours(23,59,59,999);
 
-    vm.all_rooms = RoomsService.listRooms();
+    vm.allRooms = RoomsService.listRooms();
     vm.booking = {
-      roomName: "",
-      projectName: "",
-      description: "",
-      timeFrom: "",
-      timeTo: ""
+      roomName: '',
+      projectName: '',
+      description: '',
+      timeFrom: '',
+      timeTo: ''
     };
 
     vm.timeFrom =  new Date(startDate);
     vm.timeTo =  new Date(endDate);
-    reload_data(startDate, endDate);
+    reloadData(startDate, endDate);
 
     vm.roomBooking = roomBooking;
     vm.bookingReset = bookingReset;
@@ -45,11 +46,11 @@
     vm.change = function(){
       var startDate = Date.parse(new Date(vm.timeFrom));
       var endDate = Date.parse(new Date(vm.timeTo));
-      reload_data(startDate, endDate);
+      reloadData(startDate, endDate);
     };
 
-    function reload_data(startDate, endDate){
-      vm.events = $firebaseArray(eventRef.orderByChild("timeTo").startAt(startDate).endAt(endDate));
+    function reloadData(startDate, endDate){
+      vm.events = $firebaseArray(eventRef.orderByChild('timeTo').startAt(startDate).endAt(endDate));
       vm.events.$loaded().then(function() {
         vm.rooms = vm.events.map(function(k){return k.roomName;});
       });
@@ -66,7 +67,7 @@
           description: vm.booking.description,
           timeFrom: timeFrom,
           timeTo: timeTo,
-          userName: "abc"
+          userName: 'abc'
         };
 
         EventsService.create(booking).then(
@@ -87,11 +88,11 @@
       form.$setPristine();
       form.$setUntouched();
       vm.booking = {
-        roomName: "",
-        projectName: "",
-        description: "",
-        timeFrom: "",
-        timeTo: ""
+        roomName: '',
+        projectName: '',
+        description: '',
+        timeFrom: '',
+        timeTo: ''
       };
     }
   }

@@ -1,3 +1,4 @@
+/* global angular */
 (function(){
   'use strict';
 
@@ -13,9 +14,9 @@
     var key = $routeParams.name;
     var projectsRef = DataFactory('projects');
     vm.info = $firebaseObject(projectsRef.child(key));
-    projectsRef.child(key).once("value").then(function(snapshot){
+    projectsRef.child(key).once('value').then(function(snapshot){
       if(snapshot.val() === null) {
-        var error = "Project:" + key + " not existed!";
+        var error = 'Project:' + key + ' not existed!';
         $location.url('/');
         throw error;
       }

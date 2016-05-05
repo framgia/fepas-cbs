@@ -1,3 +1,4 @@
+/* global angular */
 (function(){
   'use strict';
 
@@ -11,8 +12,8 @@
     AdminService.checkAdmin();
 
     var vm = this;
-    var eventRef = DataFactory("events");
+    var eventRef = DataFactory('events');
     vm.currentPage = 1;
-    vm.eventsPending = $firebaseArray(eventRef.orderByChild("isApproved").equalTo(null));
+    vm.eventsPending = $firebaseArray(eventRef.orderByChild('isApproved').equalTo(null));
   }
 })();

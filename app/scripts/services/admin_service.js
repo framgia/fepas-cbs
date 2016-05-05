@@ -1,3 +1,4 @@
+/* global angular */
 (function() {
   'use strict';
 
@@ -14,7 +15,7 @@
       var admin = true;
       if(!admin){
         $location.path('/');
-        console.log("You don't have access here");
+        console.log('You don\'t have access here');
       }
     }
   }
