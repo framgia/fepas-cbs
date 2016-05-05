@@ -5,19 +5,13 @@
     .module('app.controllers')
     .controller('LanguageController', LanguageController);
 
-  LanguageController.$inject = ['$rootScope', '$translate'];
+  LanguageController.$inject = ['$translate'];
 
-  function LanguageController($rootScope, $translate){
+  function LanguageController($translate){
     var vm = this;
-
-    vm.languageSwitch = $rootScope.lang;
 
     vm.changeLanguage = function(langKey) {
       $translate.use(langKey);
     };
-
-    $rootScope.$on('$translateChangeSuccess', function(event, data) {
-      $rootScope.lang = data;
-    });
   }
 })();
