@@ -118,6 +118,11 @@
           }
         }
       })
+      .when('/projects/new', {
+        templateUrl: 'views/projects/new.html',
+        controller: 'ProjectsController',
+        controllerAs: 'newProject'
+      })
       .otherwise({
         redirectTo: '/'
       });
