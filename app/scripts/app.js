@@ -65,7 +65,7 @@
       .when('/rooms/new', {
         templateUrl: 'views/rooms/new.html',
         controller: 'RoomsController',
-        controllerAs: 'newRoom'
+        controllerAs: 'room'
       })
       .when('/rooms/pending', {
         templateUrl: 'views/event_pending/pending.html',
@@ -83,6 +83,11 @@
       })
       .when('/rooms', {
         templateUrl: 'views/rooms/index.html',
+        controller: 'RoomsController',
+        controllerAs: 'room'
+      })
+      .when('/rooms/:name/edit', {
+        templateUrl: 'views/rooms/edit.html',
         controller: 'RoomsController',
         controllerAs: 'room'
       })

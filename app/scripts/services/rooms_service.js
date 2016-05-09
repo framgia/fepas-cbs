@@ -5,13 +5,17 @@
     .module('app.services')
     .service('RoomsService', RoomsService);
 
-  RoomsService.$inject = ['DataFactory', '$firebaseArray'];
+  RoomsService.$inject = ['DataFactory', '$firebaseArray', '$firebaseObject'];
 
-  function RoomsService(DataFactory, $firebaseArray) {
+  function RoomsService(DataFactory, $firebaseArray, $firebaseObject) {
     this.create = create;
+    this.findByName = findByName;
     this.listRooms = index;
+
+    var roomsRef = DataFactory('rooms');
+
     function create(room) {
-      var roomsRef = DataFactory('rooms');
+      
       $firebaseArray(roomsRef);
       return roomsRef.child(room.roomName).once('value').then(
         function(snapshot) {
@@ -31,6 +35,10 @@
     function index() {
       var roomsRef = DataFactory('rooms');
       return $firebaseArray(roomsRef);
+    }
+    
+    function findByName(name) {
+      return $firebaseObject(roomsRef.child(name));
     }
   }
 })();
