@@ -6,11 +6,11 @@ describe('Create room', function() {
     var name = 'name-' + randomVal;
     var description = 'description-' + randomVal;
 
-    element(by.model('newRoom.room.roomName')).sendKeys(name);
-    element(by.model('newRoom.room.roomDescription')).sendKeys(description);
-    element(by.model('newRoom.room.roomCapacity')).sendKeys(5);
+    element(by.model('room.room.roomName')).sendKeys(name);
+    element(by.model('room.room.roomDescription')).sendKeys(description);
+    element(by.model('room.room.roomCapacity')).sendKeys(5);
 
-    element(by.buttonText('Create')).click();
+    element(by.buttonText('create')).click();
     browser.sleep(2000);
 
     expect(browser.getCurrentUrl()).toMatch(/\/#\/$/);
