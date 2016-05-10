@@ -99,11 +99,21 @@
         controllerAs: 'newEvent'
 
       })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileController',
+        controllerAs: 'profile', 
+        resolve: {
+          currentAuth: function (AuthService) {
+            return AuthService.currentAuth();
+          }
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });
   }
-
+  
   // Function that run right after app is initialized
 
   runFunction.$inject = ['DataFactory', 'Firebase'];
