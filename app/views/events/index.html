@@ -1,40 +1,64 @@
 <div>
-  <div class="pull-right mb-15">
-    <div class="form-group">
-      <div class="col-xs-2">
-        Time From
-        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="eventList.timeFrom" ng-change='eventList.change()' show-weeks="false" />
-      </div>
-      <div class="col-xs-2">
-        Time To
-        <input type="text" class="form-control" size = "100" datepicker-popup="yyyy-MM-dd" ng-model="eventList.timeTo" ng-change='eventList.change()' show-weeks="false" />
-      </div>
-      <div>
-        <select  ng-model="eventList.selectedRoomName" ng-options="room for room in eventList.rooms" ng-change='eventList.changeRoom()'>
-          <option value=""></option>
-        </select>
-      </div>
+  <div class="pull-left col-md-6 top-10">
+    <div>
+      <p>
+        <strong>Time From</strong>
+        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="eventList.timeFrom" ng-change='eventList.changeRoom()' show-weeks="false" />
+      </p>
+      <p>
+        <strong>Time To:</strong>
+        <input type="text" class="form-control" size = "100" datepicker-popup="yyyy-MM-dd" ng-model="eventList.timeTo" ng-change='eventList.changeRoom()' show-weeks="false" />
+      </p>
     </div>
+    <div class="bottom-5">
+      <strong>Room: </strong>
+      <select  ng-model="eventList.selectedRoomName" ng-options="room for room in eventList.rooms" ng-change='eventList.changeRoom()' class="form-control">
+        <option value="">Select room</option>
+      </select>
+    </div>
+    <div class="bottom-10">
+      <strong>Seats: </strong>
+      <select ng-model="eventList.selectedRoomCapacity" ng-options="seat for seat in eventList.seats" class="form-control">
+        <option value="">Select seats</option>
+      </select>
     </div>
   </div>
-  <div class="span8">
-    <tabset>
-      <tab select="renderCalender('eventCalendar');">
-        <tab-heading>
-        </tab-heading>
-        <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
-          <h4>{{alertMessage}}</h4>
-        </div>
-        <div class="btn-toolbar">
-          <p class="pull-right lead">Booked Events </p>
-          <div class="btn-group">
-              <button class="btn btn-success" ng-click="changeView('agendaDay', 'eventCalendar')">Day</button>
-              <button class="btn btn-success" ng-click="changeView('agendaWeek', 'eventCalendar')">Week</button>
-              <button class="btn btn-success" ng-click="changeView('month', 'eventCalendar')">Month</button>
-          </div>
-        </div>
-        <div class="calendar" ng-model="eventSources" calendar="eventCalendar" ui-calendar="uiConfig.calendar"></div>
-      </tab>
-    </tabset>
+  <div class="pull-right col-md-6 room-detail"> 
+    <h2> Rooms Detail</h2>
+    <div ng-repeat="room in eventList.allRooms | roomFilter:eventList.selectedRoomCapacity | roomFilter: eventList.selectedRoomName track by room.$id">
+      <table class ="table table-bordered table-statistic-result">
+        <tr>
+          <th>Room Name</th>
+          <th>Capacity</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>{{room.roomName}}</td>
+          <td>{{room.roomCapacity}}</td>
+          <td>{{room.roomDescription}}</td>
+        </tr>
+      </table>
+    </div>
   </div>
+</div>
+
+<div class="col-md-12">
+  <tabset>
+    <tab select="renderCalender('eventCalendar');">
+      <tab-heading>
+      </tab-heading>
+      <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+        <h4>{{alertMessage}}</h4>
+      </div>
+      <div class="btn-toolbar">
+        <p class="pull-right lead">Booked Events </p>
+        <div class="btn-group">
+            <button class="btn btn-success" ng-click="changeView('agendaDay', 'eventCalendar')">Day</button>
+            <button class="btn btn-success" ng-click="changeView('agendaWeek', 'eventCalendar')">Week</button>
+            <button class="btn btn-success" ng-click="changeView('month', 'eventCalendar')">Month</button>
+        </div>
+      </div>
+      <div class="calendar" ng-model="eventSources" calendar="eventCalendar" ui-calendar="uiConfig.calendar"></div>
+    </tab>
+  </tabset>
 </div>
