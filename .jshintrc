@@ -11,6 +11,10 @@
   "undef": true,
   "unused": true,
   "newcap": false,
+  "eqeqeq": true,
+  "indent": 2,
+  "quotmark": "single",
+  "trailing": true,
   "globals": {
     "angular": false,
     "$": false,
