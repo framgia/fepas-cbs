@@ -1,0 +1,44 @@
+<h1>Create new Project</h1>
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="projectName" class="col-sm-2 control-label">Project name:</label>
+    <div class="col-sm-4">
+      <input class="form-control" id="projectName" ng-model="newProject.project.projectName" placeholder="Project name"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="projectOwners" class="col-sm-2 control-label">Project Owners:</label>
+    <div class="col-sm-4">
+      <select id="projectOwnersSelection" multiple="true" ng-model="newProject.project.projectOwners" ng-options="name for name in newProject.ownerOptions"></select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="projectMembers" class="col-sm-2 control-label">Project Members:</label>
+    <div class="col-sm-4">
+      <select id="projectOwnersSelection" multiple="true" ng-model="newProject.project.projectMembers" ng-options="name for name in newProject.memberOptions"></select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="startDate" class="control-label col-sm-2">Start from:</label>
+    <div class="col-sm-4">
+      <input type="date" ng-model="newProject.project.startDate" name="startDate" format="yyyy-MM-dd" placeholder="yyyy-MM-dd" class="form-control" required="" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="dueDate" class="control-label col-sm-2">To:</label>
+    <div class="col-sm-4">
+      <input type="date" ng-model="newProject.project.dueDate" name="dueDate" format="yyyy-MM-dd" placeholder="yyyy-MM-dd"  class="form-control" required="" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" ng-click="newProject.create()" class="btn btn-small btn-primary">Create</a>
+    </div>
+  </div>
+</form>
