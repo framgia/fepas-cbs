@@ -5,9 +5,12 @@
     .module('app.controllers')
     .controller('RoomsController', RoomsController);
 
-  RoomsController.$inject = ['$window', 'RoomsService', '$routeParams'];
+  RoomsController.$inject = ['$location', '$window', 'RoomsService', '$routeParams', 'AdminService', 'CheckLoginService'];
 
-  function RoomsController($window, RoomsService, $routeParams){
+  function RoomsController($location, $window, RoomsService, $routeParams, AdminService, CheckLoginService){
+    AdminService.checkAdmin();
+    CheckLoginService.checkLogin();
+
     var vm = this;
 
     vm.submit = submit;
@@ -48,8 +51,14 @@
     function update() {
       vm.room.$save().then(function() {
         console.log('Room saved!');
-        $window.location.href = '#/rooms/' + vm.room.roomName + '/edit';
+        var url = '/rooms/' + vm.room.roomName + '/show';
+        $location.url(url);
       });
     }
+
+    vm.redirectRoomEdit = function(){
+      var url = '/rooms/' + vm.room.roomName + '/edit';
+      $location.url(url);
+    };
   }
 })();

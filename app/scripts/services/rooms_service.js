@@ -5,9 +5,9 @@
     .module('app.services')
     .service('RoomsService', RoomsService);
 
-  RoomsService.$inject = ['DataFactory', '$firebaseArray', '$firebaseObject'];
+  RoomsService.$inject = ['$location', 'DataFactory', '$firebaseArray', '$firebaseObject'];
 
-  function RoomsService(DataFactory, $firebaseArray, $firebaseObject) {
+  function RoomsService($location, DataFactory, $firebaseArray, $firebaseObject) {
     this.create = create;
     this.findByName = findByName;
     this.listRooms = index;
@@ -15,7 +15,7 @@
     var roomsRef = DataFactory('rooms');
 
     function create(room) {
-      
+
       $firebaseArray(roomsRef);
       return roomsRef.child(room.roomName).once('value').then(
         function(snapshot) {
@@ -36,8 +36,15 @@
       var roomsRef = DataFactory('rooms');
       return $firebaseArray(roomsRef);
     }
-    
+
     function findByName(name) {
+      roomsRef.child(name).once('value').then(function(snapshot){
+        if(snapshot.val() === null) {
+          var error = 'Room:' + name + ' not existed!';
+          $location.url('/');
+          throw error;
+        }
+      });
       return $firebaseObject(roomsRef.child(name));
     }
   }
