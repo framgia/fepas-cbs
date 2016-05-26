@@ -5,16 +5,16 @@
     .module('app.controllers')
     .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['$location', 'DataFactory', '$firebaseObject', 'AdminService', 'CheckLoginService'];
+  UsersController.$inject = ['$location', 'DataFactory', '$firebaseObject', 'AdminService', 'CheckLoginService', 'AccountFactory'];
 
-  function UsersController($location, DataFactory, $firebaseObject , AdminService, CheckLoginService){
+  function UsersController($location, DataFactory, $firebaseObject , AdminService, CheckLoginService, AccountFactory){
     AdminService.checkAdmin();
     CheckLoginService.checkLogin();
 
     var user = this;
 
-    // this is just stubbed data, key will be change when users login
-    var key = 'Anh A';
+    var currentUser = AccountFactory.currentUser();
+    var key = currentUser.google.id;
     var usersRef = DataFactory('users');
 
     user.info = $firebaseObject(usersRef.child(key));
@@ -22,7 +22,7 @@
     user.saveProfile = function(){
       user.info.$save().then(function() {
         console.log('Profile saved!');
-        $location.url('/');
+        $location.url('/profile');
       });
     };
   }
