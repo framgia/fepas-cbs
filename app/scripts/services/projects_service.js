@@ -5,9 +5,10 @@
     .module('app.services')
     .service('ProjectsService', ProjectsService);
 
-  ProjectsService.$inject = ['DataFactory', '$q'];
+  ProjectsService.$inject = ['DataFactory', '$q', '$firebaseArray'];
 
-  function ProjectsService(DataFactory, $q) {
+  function ProjectsService(DataFactory, $q, $firebaseArray) {
+    this.listProjects = index;
     this.create = create;
 
     function create(project) {
@@ -20,7 +21,7 @@
       if(newProject.startDate > newProject.dueDate) {
         return $q.reject('Start Date must be earlier than Due Date');
       }
-      
+
       return projectsRef.child(newProject.projectName).once('value').then(
         function(snapshot) {
           if(snapshot.val() !== null) {
@@ -34,6 +35,11 @@
             });
           }
         });
+    }
+
+    function index(){
+      var projectsRef = DataFactory('projects');
+      return $firebaseArray(projectsRef);
     }
   }
 })();
