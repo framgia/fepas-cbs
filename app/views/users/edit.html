@@ -1,23 +1,23 @@
 <h1>Edit profile</h1>
 
-<form ng-submit="user.saveProfile()">
+<form class="form-horizontal" ng-submit="user.saveProfile()" >
   <div class="form-group">
     <label class="col-sm-2 control-label">Name:</label>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <input class="form-control" ng-model="user.info.name" />
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-sm-2 control-label">Division:</label>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <input class="form-control" ng-model="user.info.division" />
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-sm-2 control-label">Age:</label>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <input class="form-control" ng-model="user.info.age" />
     </div>
   </div>
