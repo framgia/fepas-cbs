@@ -2,23 +2,23 @@
 
 <form ng-submit="project.handleEditSubmit(project.info)">
   <div class="form-group">
-    <label class="col-sm-2 control-label">Name:</label>
+    <label for="projectName" class="col-sm-2 control-label">Project name:</label>
     <div class="col-sm-4">
-      <input class="form-control" ng-model="project.info.name" />
+      <input class="form-control" id="projectName" ng-model="project.info.projectName" placeholder="Project name"/>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label">Owners:</label>
+    <label for="projectOwners" class="col-sm-2 control-label">Project Owners:</label>
     <div class="col-sm-4">
-      <input class="form-control" ng-model="project.info.owners" />
+      <select id="projectOwnersSelection" multiple="true" ng-model="project.info.projectOwners" ng-options="name for name in project.ownerOptions"></select>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-sm-2 control-label">Members:</label>
+    <label for="projectMembers" class="col-sm-2 control-label">Project Members:</label>
     <div class="col-sm-4">
-      <input class="form-control" ng-model="project.info.members" />
+      <select id="projectOwnersSelection" multiple="true" ng-model="project.info.projectMembers" ng-options="name for name in project.memberOptions"></select>
     </div>
   </div>
 
