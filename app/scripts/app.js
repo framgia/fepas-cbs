@@ -113,6 +113,11 @@
         controller: 'ProjectsController',
         controllerAs: 'project'
       })
+      .when('/rooms/:name/show', {
+        templateUrl: 'views/rooms/show.html',
+        controller: 'RoomsController',
+        controllerAs: 'room'
+      })
       .when('/profile', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileController',
