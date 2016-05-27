@@ -5,9 +5,11 @@
     .module('app.controllers')
     .controller('RoomsController', RoomsController);
 
-  RoomsController.$inject = ['$window', 'RoomsService', '$routeParams'];
+  RoomsController.$inject = ['$window', 'RoomsService', '$routeParams', 'AdminService', 'CheckLoginService'];
 
-  function RoomsController($window, RoomsService, $routeParams){
+  function RoomsController($window, RoomsService, $routeParams, AdminService, CheckLoginService){
+    AdminService.checkAdmin();
+    CheckLoginService.checkLogin();
     var vm = this;
 
     vm.submit = submit;
