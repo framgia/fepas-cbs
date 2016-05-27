@@ -14,20 +14,21 @@
     CheckLoginService.checkLogin();
 
     var vm = this;
-    
+
     // Mock owners and members data
     vm.ownerOptions = ['Vu Xuan Dung', 'Nguyen Xuan Son', 'Nguyen Ngoc Tuan'];
     vm.memberOptions = ['Le Trung Kien', 'John Smith', 'Ngoc Trinh'];
 
+    vm.listProjects =  ProjectsService.listProjects();
     vm.create = create;
     vm.handleEditSubmit = handleEditSubmit;
 
     var key = $routeParams.name;
-    
+
     if(key) {
       loadObject();
     }
-    
+
     function loadObject() {
       var projectsRef = DataFactory('projects');
       vm.info = $firebaseObject(projectsRef.child(key));
@@ -53,7 +54,7 @@
         $location.url(url);
       });
     }
-    
+
     function create() {
       ProjectsService.create(vm.project).then(
         function() {

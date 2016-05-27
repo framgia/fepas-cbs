@@ -93,6 +93,11 @@
         controller: 'RoomsController',
         controllerAs: 'room'
       })
+      .when('/projects', {
+        templateUrl: 'views/projects/index.html',
+        controller: 'ProjectsController',
+        controllerAs: 'project'
+      })
       .when('/projects/:name/edit', {
         templateUrl: 'views/projects/edit.html',
         controller: 'ProjectsController',
@@ -111,7 +116,7 @@
       .when('/profile', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileController',
-        controllerAs: 'profile', 
+        controllerAs: 'profile',
         resolve: {
           currentAuth: function (AuthService) {
             return AuthService.currentAuth();
@@ -127,7 +132,7 @@
         redirectTo: '/'
       });
   }
-  
+
   // Function that run right after app is initialized
 
   runFunction.$inject = ['DataFactory', 'Firebase'];
