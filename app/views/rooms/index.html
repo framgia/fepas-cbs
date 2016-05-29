@@ -1,13 +1,16 @@
-<h1>List Rooms</h1>
 <div class="row">
   <div class="col-md-12">
-    <div ng-repeat="room in room.listRooms track by room.roomName" class="container">
+    <h1>List Rooms
+      <a href="#/rooms/new" class="btn btn-primary pull-right">Create Room</a>
+    </h1>
+    <div ng-repeat="room in room.listRooms track by room.roomName"  >
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
             <th>Name</th>
             <th>Capacity</th>
             <th>Description</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -15,6 +18,9 @@
             <td>{{room.roomName}}</td>
             <td>{{room.roomCapacity}}</td>
             <td>{{room.roomDescription}}</td>
+            <td>
+              <a href="#/rooms/{{room.roomName}}/edit" class="btn btn-primary btn-small">Edit</a>
+            </td>
           </tr>
         </tbody>
       </table>

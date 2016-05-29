@@ -6,6 +6,13 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 .bottom-10{margin-bottom: 50px;}
 .bottom-5{margin-bottom: 5px;}
 .room-detail{
-  overflow: auto; 
+  overflow: auto;
   max-height: 250px;
+}
+.notice{
+	color: red;
+	font-weight: bold;
+}
+.room-button{
+	margin-top: 35px;
 }
