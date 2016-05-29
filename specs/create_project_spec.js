@@ -10,7 +10,7 @@ describe('Create project', function() {
 
   it('should add new project', function() {
     browser.get('http://localhost:5000/#/login');
-    element(by.linkText('Sign in with Google')).click();
+    element(by.buttonText('Sign in with Google')).click();
     browser.getAllWindowHandles().then(function (handles) {
       newWindowHandle = handles[1];
       browser.driver.switchTo().window(newWindowHandle).then(function () {
