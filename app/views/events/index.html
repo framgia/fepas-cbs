@@ -2,7 +2,7 @@
   <div class="pull-left col-md-6 top-10">
     <div>
       <p>
-        <strong>Time From</strong>
+        <strong>Time From:</strong>
         <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="eventList.timeFrom" ng-change='eventList.changeRoom()' show-weeks="false" />
       </p>
       <p>
@@ -23,7 +23,7 @@
       </select>
     </div>
   </div>
-  <div class="pull-right col-md-6 room-detail"> 
+  <div class="pull-right col-md-6 room-detail">
     <h2> Rooms Detail</h2>
     <div ng-repeat="room in eventList.allRooms | roomFilter:eventList.selectedRoomCapacity | roomFilter: eventList.selectedRoomName track by room.$id">
       <table class ="table table-bordered table-statistic-result">
@@ -33,8 +33,8 @@
           <th>Description</th>
         </tr>
         <tr>
-          <td>{{room.roomName}}</td>
-          <td>{{room.roomCapacity}}</td>
+          <td class="room-name">{{room.roomName}}</td>
+          <td class="room-capacity">{{room.roomCapacity}}</td>
           <td>{{room.roomDescription}}</td>
         </tr>
       </table>
