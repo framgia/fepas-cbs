@@ -19,10 +19,12 @@
 
     vm.action = 'create';
 
+    var key = $routeParams.name;
     if($routeParams.name) {
       loadObject();
       vm.action = 'update';
     }
+
 
     function create() {
       RoomsService.create(vm.room).then(
@@ -51,13 +53,13 @@
     function update() {
       vm.room.$save().then(function() {
         console.log('Room saved!');
-        var url = '/rooms/' + vm.room.roomName + '/show';
+        var url = '/rooms/' + key + '/show';
         $location.url(url);
       });
     }
 
     vm.redirectRoomEdit = function(){
-      var url = '/rooms/' + vm.room.roomName + '/edit';
+      var url = '/rooms/' + key + '/edit';
       $location.url(url);
     };
   }
