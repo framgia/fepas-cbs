@@ -1,3 +1,4 @@
+/* global angular */
 (function(){
   'use strict';
 
@@ -5,9 +6,9 @@
     .module('app.controllers')
     .controller('RoomsController', RoomsController);
 
-  RoomsController.$inject = ['$location', '$window', 'RoomsService', '$routeParams', 'AdminService', 'CheckLoginService'];
+  RoomsController.$inject = ['$location', '$timeout', 'RoomsService', '$routeParams', 'AdminService', 'CheckLoginService'];
 
-  function RoomsController($location, $window, RoomsService, $routeParams, AdminService, CheckLoginService){
+  function RoomsController($location, $timeout, RoomsService, $routeParams, AdminService, CheckLoginService){
     AdminService.checkAdmin();
     CheckLoginService.checkLogin();
 
@@ -23,20 +24,36 @@
     if($routeParams.name) {
       loadObject();
       vm.action = 'update';
+      vm.readAtr = true; 
     }
 
 
     function create() {
-      RoomsService.create(vm.room).then(
-        function() {
-          $window.location.href = '#/';
-        },
-        function(error) {
-          console.log(error);
-          $window.location.href = '#/rooms/new';
-        });
+      if (vm.room) {
+        RoomsService.create(vm.room).then(
+          function(data) {
+            if(angular.isString(data)) {
+              $timeout(function(){vm.message = data;}, 0);
+            } else {
+              $timeout(function() {
+                vm.message = data.roomName + ' created sucessfully!';  
+                refresh();
+              }, 0);
+            }
+            console.log(data);
+          }, function(error) {
+            console.log(error);
+          });
+      } else {
+        vm.message = 'roomName not null';
+      }
     }
-
+    
+    function refresh() {
+      vm.room.roomName = '';
+      vm.room.roomDescription = '';
+    }
+    
     function loadObject() {
       vm.room = RoomsService.findByName($routeParams.name);
     }
@@ -44,8 +61,7 @@
     function submit() {
       if(vm.action === 'create') {
         create();
-      }
-      else {
+      } else {
         update();
       }
     }

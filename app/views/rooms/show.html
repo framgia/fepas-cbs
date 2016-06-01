@@ -1,9 +1,23 @@
-<h1 ng-model="room.room">Room Name: {{room.room.roomName}}</h1>
-<hr>
-<div ng-model="room.room">Description: {{room.room.roomDescription}}</div>
-<div ng-model="room.room">roomCapacity: {{room.room.roomCapacity}}</div>
-<div class="form-group">
-  <div class="col-sm-offset-2">
-    <button ng-click="room.redirectRoomEdit()" class="btn btn-small btn-primary">Edit</button>
+<h1> Room Detail </h1>
+
+<div class="col-md-8">
+  <div class="form-group">
+    <label for="roomName">Room name:</label>
+    <input class="form-control" id="roomName" value="{{room.room.roomName}}" placeholder="Room name" disabled/>
+  </div>
+  
+  <div class="form-group">
+    <label for="roomDescription">Room description:</label>
+    <input class="form-control" id="roomDescription" value="{{room.room.roomDescription}}" placeholder="For business meeting" disabled/>
+  </div>
+  
+  <div class="form-group">
+    <label for="roomCapacity" >Room capacity:</label>
+    <input class="form-control" type="number" id="roomCapacity" value="{{room.room.roomCapacity}}" placeholder="10" disabled/>
+  </div>
+  
+  <div class="form-group">
+    <button ng-click="room.redirectRoomEdit()" class="btn btn-primary col-md-5 room-button">Edit</button>
+    <a href="#/rooms" class="btn btn-primary col-md-5 room-button pull-right">Back</a>
   </div>
 </div>
