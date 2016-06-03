@@ -5,3 +5,5 @@
 /bower_components
 /.c9
 /.ruby-version
+/.npm
+*.log

@@ -1,0 +1,12 @@
+.DS_Store
+npm-debug.log
+/.npm
+/node_modules
+/bower_components
+/dist
+/.tmp
+/.sass-cache
+/static/bundle.*
+/\ workspace
+/\ 
+/.c9
