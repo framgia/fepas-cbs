@@ -1,0 +1,17 @@
+version: "2"
+services:
+  angularjs:
+    container_name: FEPAS_AngularJS
+    build: .
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "80:80"
+      - "5000:5000"
+      - "8080:8080"
+      - "8081:8081"
+    volumes:
+      - .:/workspace
+      - /workspace/node_modules
+      - /workspace/bower_components
+    command: node /cloud9/sdk/server.js --listen=0.0.0.0 --port=80 --auth=c9:ide -w workspace
